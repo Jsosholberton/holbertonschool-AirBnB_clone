@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-''' '''
+'''Definition of the test for BaseModel'''
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+
 
 class test_BaseModel(unittest.TestCase):
     '''
@@ -10,7 +11,7 @@ class test_BaseModel(unittest.TestCase):
     ************
         Test for the class BaseModel
     '''
-    
+
     def test_BaseModel_(self):
         '''
         Description:
