@@ -38,16 +38,29 @@ class BaseModel():
             Defines all common attributes/methods for other classes
     '''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         '''
         Description:
         ************
             Definition of the method init for his public attributes
+        Args:
+        *****
+            args (list): list of arguments (unused)
+            kwargs (dict): dictionary to set his attributes
         '''
+        if kwargs:
+            kwargs.pop("__class__", None)
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    setattr(self, key,
+                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
+                    setattr(self, key, value)
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def save(self):
         '''
