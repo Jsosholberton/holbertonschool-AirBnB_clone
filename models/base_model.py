@@ -2,7 +2,9 @@
 '''
 Description:
 ************
-    Definition of the BaseModel
+    Definition of the BaseModel that defines all
+    common attributes/methods for other classes
+
 Import:
 *******
     uuid (module): (universally unique identifiers) according to RFC 4122.
@@ -12,6 +14,17 @@ Import:
         datetime (class): datetime(year, month, day)
             now (method): Construct a datetime from time.time()
             isoformat (method): Return the time formatted according to ISO.
+
+Public instances attributes:
+****************************
+    id (str): Is a identification of the process
+    created_at (datetime): Is the date time of the creation of any element
+    updated_at (datetime): Is the date time of the update of any element
+
+Public instances methods:
+*************************
+    save (method): update the datetime if you use this method
+    to_dict (method): return an dictionary with all the attributes from object
 '''
 import uuid
 from datetime import datetime
@@ -24,11 +37,12 @@ class BaseModel():
         Definition of the Base Model:
             Defines all common attributes/methods for other classes
     '''
+
     def __init__(self):
         '''
         Description:
         ************
-            Definition of the class init for his public values
+            Definition of the class init for his public attributes
         '''
 
         self.id = str(uuid.uuid4())
