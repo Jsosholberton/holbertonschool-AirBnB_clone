@@ -18,9 +18,9 @@ class test_BaseModel(unittest.TestCase):
         ------------
             Test for id and his variables
         '''
+
         my_base = BaseModel()
         my_base2 = BaseModel()
-
         self.assertNotEqual(my_base.id, my_base2.id)
         self.assertTrue(my_base)
         self.assertTrue(type(my_base.id) == str)

@@ -62,10 +62,10 @@ class BaseModel():
         '''
         Description:
         ************
-            Made a description of the principal elements of the object
+            Made a description of the principal attributes of the object
         Return:
         *******
-            A string with the principal elements of the object
+            A string with the principal attributes of the object
         '''
 
         return ("[{}] ({}) {}".format(type(self).__name__,
