@@ -21,12 +21,18 @@ class test_BaseModel(unittest.TestCase):
 
         my_base = BaseModel()
         my_base2 = BaseModel()
+
+        #testing the attributes
         self.assertNotEqual(my_base.id, my_base2.id)
         self.assertTrue(my_base)
         self.assertTrue(type(my_base.id) == str)
         self.assertTrue(type(my_base.created_at) == datetime)
         self.assertTrue(type(my_base.updated_at) == datetime)
+
+        #testing the methods
         my_base_dict = my_base.to_dict()
         my_base2_dict = my_base2.to_dict()
         self.assertTrue(type(my_base_dict == dict))
         self.assertNotEqual(my_base_dict, my_base2_dict)
+        my_base.save()
+        self.assertTrue(my_base.__str__)

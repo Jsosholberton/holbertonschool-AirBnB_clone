@@ -42,7 +42,7 @@ class BaseModel():
         '''
         Description:
         ************
-            Definition of the class init for his public attributes
+            Definition of the method init for his public attributes
         '''
 
         self.id = str(uuid.uuid4())
