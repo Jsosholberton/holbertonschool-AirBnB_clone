@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
 
         return True
 
-    def do_empy_line(self):
+    def empyline(self):
         '''
         Description:
         ************
