@@ -2,8 +2,10 @@
 import json
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """class hbnb console command"""
+
     prompt = "(hbnb) "
 
     def do_quit(self, line):
@@ -28,6 +30,7 @@ class HBNBCommand(cmd.Cmd):
         '''
         print()
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
