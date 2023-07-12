@@ -32,6 +32,15 @@ class HBNBCommand(cmd.Cmd):
 
         return True
 
+    def do_empy_line(self):
+        '''
+        Description:
+        ************
+            Ignore the blank lines
+        '''
+
+        pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
