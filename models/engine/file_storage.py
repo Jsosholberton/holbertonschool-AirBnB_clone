@@ -21,7 +21,13 @@ class FileStorage():
 
     def save(self):
         ''''''
+        with open(self.__file_path, mode='w', encoding='utf-8') as file:
+            file.write(json.dumps(self.__objects))
 
     def reload(self):
         ''''''
-        return
+        try:
+            with open(self.__file_path, mode="r", encoding='utf-8') as file:
+                self.__objects = json.loads(file.read())
+        except Exception:
+            pass
