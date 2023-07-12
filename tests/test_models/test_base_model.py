@@ -36,3 +36,13 @@ class test_BaseModel(unittest.TestCase):
         self.assertNotEqual(my_base_dict, my_base2_dict)
         my_base.save()
         self.assertTrue(my_base.__str__)
+
+    def test_typeData(self):
+        """this method check the type of
+        the atributes when created a instance
+        """
+        instance1 = BaseModel()
+        self.assertIsInstance(instance1.created_at, datetime)
+        self.assertIsInstance(instance1.updated_at, datetime)
+        self.assertIsInstance(instance1.id, str)
+        self.assertIsInstance(instance1, BaseModel)
