@@ -21,13 +21,19 @@ class FileStorage():
 
     def save(self):
         ''''''
-        with open(self.__file_path, mode='w', encoding='utf-8') as file:
-            file.write(json.dumps(self.__objects))
+        dic = {}
+        for key, value in FileStorage.__objects.items():
+            dic[key] = value.to_dict()
+        with open(FileStorage.__file_path, mode='w') as file:
+            json.dump(dic, file)
 
     def reload(self):
         ''''''
         try:
-            with open(self.__file_path, mode="r", encoding='utf-8') as file:
-                self.__objects = json.loads(file.read())
+            with open(FileStorage.__file_path, mode="r", encoding='utf-8') as file:
+                dic = json.load(file)
+                for key, value in dic.items():
+                    tmp = eval(value["__class__"])(**value)
+                    FileStorage.__objects[key] = tmp
         except Exception:
             pass
