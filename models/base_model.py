@@ -50,13 +50,13 @@ class BaseModel():
             kwargs (dict): dictionary to set his attributes
         '''
         if kwargs:
-            kwargs.pop("__class__", None)
             for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    setattr(self, key,
-                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                else:
-                    setattr(self, key, value)
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        setattr(self, key,
+                                datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    else:
+                        setattr(self, key, value)
 
         else:
             self.id = str(uuid.uuid4())
@@ -71,7 +71,7 @@ class BaseModel():
             Change the date time when any is update
         '''
 
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def __str__(self):
@@ -97,7 +97,7 @@ class BaseModel():
             Dictionaty of the object but adding a class name
         '''
 
-        dict_base = self.__dict__
+        dict_base = self.__dict__.copy()
         dict_base["__class__"] = type(self).__name__
         dict_base["created_at"] = dict_base["created_at"].isoformat()
         dict_base["updated_at"] = dict_base["updated_at"].isoformat()
