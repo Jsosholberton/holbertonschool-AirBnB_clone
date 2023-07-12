@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         *****
             line (any): string with the command
         '''
-        print()
+
         return True
 
 
