@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''Definition of the class'''
 import json
 import cmd
 
