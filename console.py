@@ -9,7 +9,6 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     """class hbnb console command"""
-
     prompt = "(hbnb) "
     list_class = ["BaseModel"]
 
@@ -19,12 +18,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         '''Exit command to exit the program\n'''
-
         return True
 
     def emptyline(self):
         '''Ignore the blank lines'''
-
         pass
 
     def do_create(self, line):
@@ -41,17 +38,41 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         '''Prints the string representation of an instance by id'''
-        
-        code_key = line.split()
-        if len(line) > 0:
-            dict_objets = models.storage.all()
+        if len(line) >= 2:
+            code_key = line.split()
             key = code_key[0] + "." + code_key[1]
-            if key in dict_objets:
-                print(dict_objets[key])
+            if key in models.storage.all():
+                print(models.storage.all()[key])
             else:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def do_destroy(self, line):
+        '''Deletes an instance based on the class name and id'''
+        if len(line) > 0:
+            code_key = line.split()
+            if code_key[0] in HBNBCommand.list_class:
+                if len(code_key) == 2:
+                    key = code_key[0] + "." + code_key[1]
+                    if key in models.storage.all():
+                        del models.storage.all()[key]
+                        models.storage.save()
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+    def do_all(self, line):
+        "Prints all string representation of all instances"
+        if line in HBNBCommand.list_class or not line:
+            for show_object in models.storage.all():
+                print(models.storage.all()[show_object])
+        else:
+            print("** class doesn't exist **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
