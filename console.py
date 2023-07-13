@@ -38,11 +38,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         '''Prints the string representation of an instance by id'''
-        if len(line) >= 2:
+        if len(line) > 0:
             code_key = line.split()
-            key = code_key[0] + "." + code_key[1]
-            if key in models.storage.all():
-                print(models.storage.all()[key])
+            if code_key[0] in HBNBCommand.list_class:
+                if len(code_key) == 2:
+                    key = code_key[0] + "." + code_key[1]
+                    if key in models.storage.all():
+                        print(models.storage.all()[key])
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
         else:
@@ -66,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
     def do_all(self, line):
         "Prints all string representation of all instances"
         if line in HBNBCommand.list_class or not line:
