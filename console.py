@@ -18,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         '''Exit command to exit the program\n'''
+        print()
         return True
 
     def emptyline(self):
@@ -75,15 +76,39 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         "Prints all string representation of all instances"
+        list_print = []
         if line in HBNBCommand.list_class:
             for key, value in models.storage.all().items():
                 if value.to_dict()["__class__"] == line:
-                    print(models.storage.all()[key])
+                    list_print.append(value.__str__())
+            print(list_print)
         elif not line:
-            for show_object in models.storage.all():
-                    print(models.storage.all()[show_object])
+            for key, value in models.storage.all().items():
+                list_print.append(value.__str__())
+            print(list_print)
         else:
             print("** class doesn't exist **")
+
+    def do_update(self, line):
+        '''Updates an instance based on the class name and id'''
+        arr_arg = line.replace('"', '').split(' ')
+        if len(line) <= 0:
+            print("** class name missing **")
+        elif arr_arg[0] not in HBNBCommand.list_class:
+            print("** class doesn't exist **")
+        elif len(arr_arg) < 2:
+            print("** instance id missing **")
+        else:
+            token_key = arr_arg[0] + "." + arr_arg[1]
+            if token_key not in models.storage.all():
+                print("** no instance found **")
+            elif len(arr_arg) < 3:
+                print("** attribute name missing **")
+            elif len(arr_arg) < 4:
+                print("** value missing **")
+            else:
+                setattr(models.storage.all()[token_key], arr_arg[2], arr_arg[3])
+                models.storage.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
