@@ -4,13 +4,14 @@ import json
 import cmd
 import shlex
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     """class hbnb console command"""
     prompt = "(hbnb) "
-    list_class = ["BaseModel"]
+    list_class = ["BaseModel", "User"]
 
     def do_quit(self, line):
         '''Quit command to exit the program\n'''
@@ -99,16 +100,17 @@ class HBNBCommand(cmd.Cmd):
         elif len(arr_arg) < 2:
             print("** instance id missing **")
         else:
-            token_key = arr_arg[0] + "." + arr_arg[1]
-            if token_key not in models.storage.all():
+            tok_key = arr_arg[0] + "." + arr_arg[1]
+            if tok_key not in models.storage.all():
                 print("** no instance found **")
             elif len(arr_arg) < 3:
                 print("** attribute name missing **")
             elif len(arr_arg) < 4:
                 print("** value missing **")
             else:
-                setattr(models.storage.all()[token_key], arr_arg[2], arr_arg[3])
+                setattr(models.storage.all()[tok_key], arr_arg[2], arr_arg[3])
                 models.storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
