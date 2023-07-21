@@ -1,12 +1,11 @@
-footer>div {
+footer {
     background-color: white; 
     height:60px; 
     width:100%; 
     border-top: 1px solid #CCCCCC;
     position:fixed;
     bottom: 0;
-}
-footer>div>p {
-    text-align: center;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content:center;
 }
