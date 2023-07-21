@@ -45,10 +45,10 @@ ________________________________________
 | :---         |     :---:      |          ---: |
 | <code>help   | Display all commands available  | <code>help     |
 | <code>create | Creates new object   | <code>create (class here)<code> |
-| <code>update | Updates attribute of an object|<code>User.update('123', {'name': 'Greg_n_Mel'})|
-| <code>all   | Display all objects in class  | <code>user.all    |
-| <code>show  | Retrieve an object from a file | <code>user.show |
-| <code>destroy  | Destroy specified object |  <code>User.destroy('123') |
+| <code>update | Updates attribute of an object|<code>update class id name_attribute var_attribute|
+| <code>all   | Display all objects in class  | <code>all (class here) or only (all)    |
+| <code>show  | Retrieve an object from a file | <code>show class id |
+| <code>destroy  | Destroy specified object |  <code>destroy class id |
 | <code> quit | Close the console | <code> quit|
 ________________________________________
 
