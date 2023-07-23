@@ -36,6 +36,7 @@
 	padding: 25px 0px;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+	position:relative;
 }
 .locations:hover .popover, .amenities:hover .popover{
 	display: inline-block;
